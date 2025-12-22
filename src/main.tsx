@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import * as THREE from "three";
 import { FrontSide } from "three";
 
+import background from "./assets/_.jpeg?inline";
+
 // import "./main.css";
 
 export function Box(props: ThreeElements["mesh"]) {
@@ -59,16 +61,18 @@ export function Box(props: ThreeElements["mesh"]) {
 }
 
 createRoot(document.getElementById("root") as HTMLElement).render(
-  <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-    <ambientLight intensity={Math.PI / 2} />
-    <spotLight
-      position={[10, 10, 10]}
-      angle={0.15}
-      penumbra={1}
-      decay={0}
-      intensity={3}
-    />
-    <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-    <Box position={[0, 0, 0]} />
-  </Canvas>
+  <div style={{ backgroundImage: `url(${background})` }}>
+    <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+      <ambientLight intensity={Math.PI / 2} />
+      <spotLight
+        position={[10, 10, 10]}
+        angle={0.15}
+        penumbra={1}
+        decay={0}
+        intensity={3}
+      />
+      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+      <Box position={[0, 0, 0]} />
+    </Canvas>
+  </div>
 );
