@@ -1,0 +1,5 @@
+body {
+  margin: 0;
+  /* Use a linear gradient for the background */
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+}
