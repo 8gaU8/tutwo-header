@@ -1,13 +1,13 @@
-import { Canvas, type ThreeElements, useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
-import { createRoot } from 'react-dom/client'
-import * as THREE from 'three'
+import { Canvas, type ThreeElements, useFrame } from "@react-three/fiber";
+import { useRef, useState } from "react";
+import { createRoot } from "react-dom/client";
+import * as THREE from "three";
 
-function Box(props: ThreeElements['mesh']) {
-  const ref = useRef<THREE.Mesh>(null!)
-  const [hovered, hover] = useState(false)
-  const [clicked, click] = useState(false)
-  useFrame((_state, delta) => (ref.current.rotation.x += delta))
+export function Box(props: ThreeElements["mesh"]) {
+  const ref = useRef<THREE.Mesh>(null!);
+  const [hovered, hover] = useState(false);
+  const [clicked, click] = useState(false);
+  useFrame((_state, delta) => (ref.current.rotation.x += delta));
   return (
     <mesh
       {...props}
@@ -15,19 +15,26 @@ function Box(props: ThreeElements['mesh']) {
       scale={clicked ? 1.5 : 1}
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
-      onPointerOut={() => hover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      onPointerOut={() => hover(false)}
+    >
+      <boxGeometry args={[3, 3, 3]} />
+      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
     </mesh>
-  )
+  );
 }
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById("root") as HTMLElement).render(
   <Canvas>
     <ambientLight intensity={Math.PI / 2} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
+    <spotLight
+      position={[10, 10, 10]}
+      angle={0.15}
+      penumbra={1}
+      decay={0}
+      intensity={Math.PI}
+    />
     <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-    <Box position={[-1.2, 0, 0]} />
-    <Box position={[1.2, 0, 0]} />
-  </Canvas>,
-)
+    <Box position={[-2, 0, 0]} />
+    <Box position={[2, 0, 0]} />
+  </Canvas>
+);
